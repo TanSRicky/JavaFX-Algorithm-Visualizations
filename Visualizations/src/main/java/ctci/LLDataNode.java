@@ -24,16 +24,34 @@ public class LLDataNode extends Pane implements DataBoxTemplate{
 		public LLDataNode(){
 			value = r.nextInt(1000);
 			squareOne =  ShapeBuilder.square();
+			squareOne.setTranslateX(xOffSet);
 			squareTwo =  ShapeBuilder.square();
-			line.setStartX(xOffSet+(ShapeBuilder.getLength()));
-			line.setEndX(xOffSet+100);
+			offSet();
+			squareTwo.setTranslateX(xOffSet);
+		
+			line.setTranslateX(xOffSet+50);
+			line.setStartX(line.getTranslateX());
+			line.setEndX(line.getTranslateX()+100);
 			line.setStartY(yOffSet+25);
 			line.setEndY(yOffSet+25);
-			combinedPane.getChildren().addAll(squareOne,t,squareTwo);
+			offSet();
+			combinedPane.getChildren().addAll(squareOne,t,squareTwo,line);
 			combinedPane.setLayoutX(xOffSet);
 		    combinedPane.setLayoutY(yOffSet);
+		 
+		    
 		}
-
+		  public static void offSet() {
+		
+		       if(xOffSet < 1500) {
+		       	xOffSet+=ShapeBuilder.getLength();
+		       
+		       } else if (xOffSet >= 700) {
+		       	xOffSet = ShapeBuilder.getLength();
+		       	yOffSet = yOffSet + ShapeBuilder.getLength();
+		       }
+			   
+		   }
 		
 		@Override
 		public StackPane getStackPane() {
