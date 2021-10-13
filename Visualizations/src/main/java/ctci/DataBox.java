@@ -13,7 +13,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import java.util.Random;
 
-public class  DataBox extends Pane{
+public class  DataBox extends Pane implements DataBoxTemplate {
 	
 	 static double xOffSet = ShapeBuilder.getLength();
      static double yOffSet = ShapeBuilder.getLength();
@@ -39,7 +39,7 @@ public class  DataBox extends Pane{
  	    s.setLayoutX(xOffSet);
         s.setLayoutY(yOffSet);
   
-    }
+      }
 
 
    public static void OffSet() {
@@ -112,7 +112,8 @@ public class  DataBox extends Pane{
 	    
     
     }
-    
+
+
    
 	
 

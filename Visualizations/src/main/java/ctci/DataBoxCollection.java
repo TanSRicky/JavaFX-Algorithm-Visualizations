@@ -13,9 +13,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 //Each data box collection has an FX sorts
-//which provides a timeline to it.
+//which provides a time line to it.
 
-public class DataBoxCollection 
+public class DataBoxCollection implements CollectionTemplate
 {
     Group squareGroup = new Group();
     ArrayList<DataBox> ps = new ArrayList<>();

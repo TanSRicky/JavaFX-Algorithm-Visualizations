@@ -3,23 +3,24 @@ package ctci;
 import java.util.ArrayList;
 
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Line;
 
-public class LinkedListDataBoxCollection extends DataBoxCollection
+public class LinkedListDataBoxCollection implements CollectionTemplate 
 {  
-
+	Group squareGroup = new Group();
+	ArrayList<LLDataNode> ps = new ArrayList<>();
+	
 	public LinkedListDataBoxCollection() 
 	{
-	  super();
+	 
 	  LLDataNode node = new LLDataNode();
-      ps.add(node.box);
-      ps.add(node.boxTwo);
-      ps.add(node.boxThree);
       squareGroup.getChildren().addAll(node.combinedPane);
-     
+      ps.add(node);
 	}
+	
 	
 	@Override
     public void populate() 
@@ -31,6 +32,12 @@ public class LinkedListDataBoxCollection extends DataBoxCollection
      
 		
     }
+
+
+	public Group getSquareGroup() {
+		// TODO Auto-generated method stub
+		return this.squareGroup;
+	}
     
 
    

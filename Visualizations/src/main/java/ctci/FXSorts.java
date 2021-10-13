@@ -19,8 +19,8 @@ public class FXSorts {
 	static int quickSortQ = 0;
      Timeline timeline = new Timeline();
      
-	public FXSorts(ArrayList<DataBox> boxes) {
-		ps = boxes;
+	public FXSorts(ArrayList<DataBox> ps2) {
+		ps = ps2;
     	timeline.setCycleCount(Animation.INDEFINITE);
 	}
 	
