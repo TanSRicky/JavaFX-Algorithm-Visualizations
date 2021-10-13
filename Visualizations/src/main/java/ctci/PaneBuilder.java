@@ -44,11 +44,11 @@ public  class PaneBuilder {
 	
 	static VBox vBox;
 	
-    FXSorts fxSorts = new FXSorts();
+
 	MenuItem item = new MenuItem("add");
 
     DataBoxCollection dbc = new DataBoxCollection();
-    LinkedListDataBox ldb = new LinkedListDataBox();
+    LinkedListDataBoxCollection ldb = new LinkedListDataBoxCollection();
     Integer x = 0;
 	BorderPane bp = new BorderPane();
 	static MenuBar menuBar;
@@ -62,6 +62,7 @@ public  class PaneBuilder {
 	Button partition = new Button("partition");
 	Button panDown = new Button("goDown");
 	Button panUp = new Button("goUp");
+	
 	{
 	
 		menuBar = menuBar();
@@ -70,6 +71,7 @@ public  class PaneBuilder {
 		pane.setTranslateX(100);
 		pane.setBackground(background);
 		pane.getChildren().addAll(dbc.getSquareGroup());
+		pane.getChildren().addAll( ldb.getSquareGroup());
 	   	vSeparator.relocate(100,100);
 		bp.getChildren().add(menuBar);
 	
@@ -118,15 +120,15 @@ public  class PaneBuilder {
     
     private void buttons() 
     {
-    	panUp.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
-  	  {
-  	  @Override public void handle(ActionEvent e) 
-  	  {
-  			dbc.panup();
-  	  }
-  	  });
-  	  
-      	panDown.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+	      panUp.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
+	  	  {
+	  	  @Override public void handle(ActionEvent e) 
+	  	  {
+	  			dbc.panup();
+	  	  }
+	  	  });
+	  	  
+      	  panDown.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
     	  {
     	  @Override public void handle(ActionEvent e) 
     	  {
@@ -140,7 +142,7 @@ public  class PaneBuilder {
     	  {
     	  @Override public void handle(ActionEvent e) 
     	  {
-    			dbc.a();
+    			dbc.populate();
     	  }
     	  });
     	  
@@ -149,7 +151,7 @@ public  class PaneBuilder {
     	  @Override public void handle(ActionEvent e) 
     	  {
     		      
-    		  dbc.b();
+    		  dbc.increaseRate();
     	  }});
     	  
    
@@ -158,28 +160,25 @@ public  class PaneBuilder {
     	  @Override 
     	  public void handle(ActionEvent e) 
     	  {
-              
     		  dbc.c();
     		 
     	  }});
+		 
 		 llLabel.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
 		    {
 	    	  @Override 
 	    	  public void handle(ActionEvent e) 
 	    	  {
-
-	    		  pane.getChildren().addAll( ldb.getSquareGroup());
+	    		 ldb.populate();
 	    		 
 	    	  }});
+		 
 		 partition.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
 		    {
 	    	  @Override 
 	    	  public void handle(ActionEvent e) 
 	    	  {
-
-
-	    	   
-					fxSorts.QuickSort(1, FXSorts.ps.size()-1);
+					dbc.sorts.QuickSort(0, dbc.sorts.ps.size()-1);
 	    		 
 	    	  }});
     	  swap.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() 
@@ -187,7 +186,7 @@ public  class PaneBuilder {
     	  @Override public void handle(ActionEvent e) 
     	  {
     		  
-    		  dbc.swap();
+    		  dbc.bubbleSort();
     		 
     	  }});
     }

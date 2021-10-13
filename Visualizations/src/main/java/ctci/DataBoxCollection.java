@@ -12,12 +12,13 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+//Each data box collection has an FX sorts
+//which provides a timeline to it.
 
 public class DataBoxCollection 
 {
     Group squareGroup = new Group();
-    
-	static ArrayList<DataBox> ps = new ArrayList<>();
+    ArrayList<DataBox> ps = new ArrayList<>();
 	FXSorts sorts = new FXSorts(ps);
 	double rate = .1;
     public DataBoxCollection()
@@ -63,7 +64,7 @@ public class DataBoxCollection
 	}
 
     
-    public void a() 
+    public void populate() 
     {
      for(int i = 0; i < 1000; i++) {
 	    DataBox d = new DataBox();
@@ -73,7 +74,7 @@ public class DataBoxCollection
 		
     }
     
-    public void b() 
+    public void increaseRate() 
     {
     	rate++;
     }
@@ -81,7 +82,7 @@ public class DataBoxCollection
     public void c() 
     {
     	
-    	 FXSorts.stop();
+    	 sorts.stop();
 		  
     }
     public void panup() 
@@ -96,13 +97,13 @@ public class DataBoxCollection
     	  squareGroup.setLayoutY(squareGroup.getLayoutY()-500);
 	   
     }
-    public void swap() 
+    public void bubbleSort() 
     {
     	
-	   
+	     sorts.bubbleSort();
 	    
     }
-  
+    
   
     
 

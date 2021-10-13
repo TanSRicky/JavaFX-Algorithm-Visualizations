@@ -1,30 +1,23 @@
 package ctci;
 
-import java.util.Stack;
-
-import javafx.animation.FadeTransition;
-import javafx.animation.FillTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 import java.util.Random;
+
 public class  DataBox extends Pane{
+	
 	 static double xOffSet = ShapeBuilder.getLength();
      static double yOffSet = ShapeBuilder.getLength();
-     private static Stack<StackPane> buffer = new Stack<>();
      protected Polygon square;
-     private Circle circle;
      protected StackPane s = new StackPane();
 	 final Label label = new Label("c");
 	 final ContextMenu contextMenu = new ContextMenu();
@@ -122,22 +115,6 @@ public class  DataBox extends Pane{
     
    
 	
-//    void squareColor() {
-//    	
-//    	 FillTransition ft = new FillTransition(Duration.millis(1), square, Color.RED, Color.BLUE);
-//         ft.setCycleCount(4);
-//         ft.setAutoReverse(true);
-//         ft.play();
-//         ft = new FillTransition(Duration.millis(3000), square, Color.RED, Color.AQUAMARINE);
-//         ft.setCycleCount(4);
-//         ft.setAutoReverse(true);
-//         ft.play();
-//    
-//    }
-//
-//
-//
-
 
 
 }
