@@ -8,37 +8,31 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Line;
 
-public class LinkedListDataBoxCollection implements CollectionTemplate 
-{  
-	Group squareGroup = new Group();
-	ArrayList<LLDataNode> ps = new ArrayList<>();
-	
-	public LinkedListDataBoxCollection() 
-	{
-	 
-	  LLDataNode node = new LLDataNode();
-      squareGroup.getChildren().addAll(node.combinedPane);
-      ps.add(node);
-	}
-	
-	
-	@Override
-    public void populate() 
-    {
-    
-	    LLDataNode d  = new LLDataNode();
-		squareGroup.getChildren().addAll(d.getStackPane());
-		ps.add(d);
-     
-		
-    }
+public class LinkedListDataBoxCollection extends CollectionTemplate {
+	LLDataNode sentinel;
 
+	public LinkedListDataBoxCollection() {
+
+		sentinel = new LLDataNode();
+		sentinel.sentinel();
+		squareGroup.getChildren().addAll(sentinel.combinedPane);
+		ps.add(sentinel);
+
+	}
+
+	public void populate() {
+
+		LLDataNode node = new LLDataNode();
+		squareGroup.getChildren().addAll(node.combinedPane);
+		LLDataNode tmp = (LLDataNode) ps.get(ps.size() - 1);
+		tmp.next = node;
+		ps.add(node);
+
+	}
 
 	public Group getSquareGroup() {
 		// TODO Auto-generated method stub
 		return this.squareGroup;
 	}
-    
 
-   
 }

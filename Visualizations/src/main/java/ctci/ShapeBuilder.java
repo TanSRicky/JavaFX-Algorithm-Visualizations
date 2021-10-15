@@ -3,21 +3,21 @@ package ctci;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
-
+import java.util.Random;
 public class ShapeBuilder
 {
 	static Polygon polygon;
 	static Circle circle;
-    private static Double length = 25.0;
+    private static Double length = 10.0;
 	private static Double y = getLength()*2;
 	private static  Double x = getLength();
-	
+	static Random rand = new Random();
 
 	
     static Polygon square()
     {
     	polygon = new Polygon();
-    	polygon.setFill(Color.AQUAMARINE);
+    	polygon.setFill(new Color(rand.nextDouble(),rand.nextDouble(),rand.nextDouble(),rand.nextDouble()));
         polygon.setStroke(Color.BLACK);
         polygon.setStrokeWidth(length/10);
         
@@ -35,9 +35,9 @@ public class ShapeBuilder
 
     static Circle circle() 
     {
-    	
+    	Color c = new Color(rand.nextDouble(),rand.nextDouble(),rand.nextDouble(),rand.nextDouble());
     	circle = new Circle();
-    	circle.setFill(Color.AQUAMARINE);
+   
         circle.setStroke(Color.BLACK);
         // set the position of center of the  circle
         circle.setCenterX(0.0f);

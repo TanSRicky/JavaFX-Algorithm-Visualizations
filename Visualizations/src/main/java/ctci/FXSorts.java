@@ -14,25 +14,34 @@ import javafx.util.Duration;
 public class FXSorts {
 	
 	static double rate = .1;
-    ArrayList<DataBox> ps = new ArrayList<DataBox>();
+    ArrayList<DataBoxTemplate> ps = new ArrayList<DataBoxTemplate>();
 	final static IntegerProperty x = new SimpleIntegerProperty(0);
 	static int quickSortQ = 0;
      Timeline timeline = new Timeline();
+     int swaps = 0;
      
-	public FXSorts(ArrayList<DataBox> ps2) {
+	public FXSorts(ArrayList<DataBoxTemplate> ps2) {
 		ps = ps2;
     	timeline.setCycleCount(Animation.INDEFINITE);
 	}
 	
-
+	
 	public void swap(int i, int j) {
+	
+		 DataBoxTemplate tmp = ps.get(i);
+	     DataBoxTemplate tmp2 = ps.get(j);
+	
+		Color ctmp = tmp.getColor();
+		tmp.setColor(tmp2.getColor());
+		tmp2.setColor(ctmp);
+    		       
+            
+		int nTmp = tmp.value;
+		tmp.value = tmp2.value;
+		tmp2.value = nTmp;
+		swaps++;
 		
-		ps.get(j).setColor(Color.ORANGE);
-    	ps.get(i).setColor(Color.LIGHTPINK);
-		var tmp =  ps.get(i).value;
-		ps.get(i).value = ps.get(j).value;
-		ps.get(j).value = tmp;
-		
+	
 	 }
     public  void stop() {
     	timeline.stop();
@@ -41,28 +50,32 @@ public class FXSorts {
 
 	public  void bubbleSort() {
 
-		timeline.getKeyFrames().add(new KeyFrame(
-		        Duration.seconds(rate),
-		        event -> {        x.set(x.get() + 1);
-		        	            for (int i11 = 0; i11 < ps.size()-1; i11++) 
-		        	    	    {
-		        	    	       
-		        	    	    	if(ps.get(i11).value > ps.get(i11+1).value) {
-		        	    	    		swap(i11,i11+1);
-		        	    	    		ps.get(i11).update();
-		        	    	    		ps.get(i11+1).update();
-		        	    	 
-		        	    	    	}
-		        	    	  			
-		        	    	    	    
-		        	    	    } 
-		        	            
+		
+
+		
+			for (int i11 = 0; i11 < ps.size() - 1; i11++) {
+				final int index = i11;
+				final DataBoxTemplate tmp = ps.get(index);
+				final DataBoxTemplate tmp2 = ps.get(index + 1);
+				timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(rate), event -> {
+				if (tmp.value > tmp2.value) {
+							
+						
+							swap(index, index + 1);
+						
+						}
+				}));
+				}
+			   
+
+			
+			
+		
+
+		timeline.play();
 	    
-		        }));      
-	    
-		  timeline.play();
-		  
 	}
+	
 
 	public  void QuickSort(int l, int r) 
 	{
@@ -76,36 +89,18 @@ public class FXSorts {
 		         if(l < r) 
 		         	{
 				    	q=partitiontest(l,r);	
-				    	ps.get(q).setColor(Color.RED);
-				        ps.get(q).update();
+				    
 						QuickSort(l,q-1);
 						QuickSort(q+1,r);
 				
 		         	}      
 	    
 	        }));
-			timeline.play();
+		timeline.play();
+		System.out.println(swaps);
 	}
 	public int partitiontest(int l, int r) {
-	
-		timeline.getKeyFrames().add(new KeyFrame(
-	        Duration.seconds(rate),
-	        event -> {
-	            x.set(x.get() + 1);
-	            ps.get(l).setColor(Color.BLUE);
-	           	ps.get(l).update();
-
-	    	    ps.get(r).setColor(Color.ORANGE);
-	           	ps.get(r).update();
-	    
-	        
-	        
-	        } 
-	        
-	    ));
-	       
-
-	        	      
+      
 	        int left =l-1;
 	     
 	        int xr = ps.get(r).value;
@@ -115,61 +110,16 @@ public class FXSorts {
 	        	if(ps.get(i).value < xr) {
 	        	    left++;
 	        	    swap(left,i);
-	        		final int tmp = i;
-	        		final int tmpa = left;
-	        		timeline.getKeyFrames().add(new KeyFrame(
-	        	        Duration.seconds(rate),
-	        	        event -> {
-	        	            x.set(x.get() + 1);
-	        	        	ps.get(tmp).setColor(Color.BLUE);
-	    		         	ps.get(tmp).update();
-	    		        	ps.get(tmpa).setColor(Color.BLUE);
-	    		        	ps.get(tmpa).update();
-	        	        
-	        	        
-	        	        } 
-	        	        
-	        	    ));
-	        	       
-	          
-		         	ps.get(i).update();
-	
-		        	ps.get(left).update();
-	     
+
 	           }
 	       }
 	        
 	        
 	        
 	           swap(left+1,r);
-		     
-
-	      	
-	        	        
-	        	        
+ 
 	       return left+1;
 	  } 
 	
-	public void partitionQS(int p,int l, int r) {
-	
-        timeline.pause();
-		timeline = new Timeline(
-				
-	    	    new KeyFrame(
-	        	        Duration.seconds(3),
-	        	        event -> {
-	        	            x.set(x.get() + 1);
-	        	            ps.get(p).setColor(Color.RED);
-	        	            for(int a = p-1; a>l; a--)   ps.get(a).setColor(Color.LIGHTBLUE);
-		        	        for(int b = p+1; b<r; b++)   ps.get(b).setColor(Color.ORANGE);
-
-
-	        	          } 
-	        	        
-	        	    )
-	        	);
-		timeline.setCycleCount(1);
-		timeline.play();
-
-}
+	 
 	}

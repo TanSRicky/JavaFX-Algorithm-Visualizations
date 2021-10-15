@@ -10,7 +10,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 
-public class LLDataNode extends Pane implements DataBoxTemplate{
+public class LLDataNode extends DataBoxTemplate{
 		static double xOffSet = ShapeBuilder.getLength();
 		static double yOffSet = ShapeBuilder.getLength();
 		Polygon squareOne;
@@ -18,13 +18,17 @@ public class LLDataNode extends Pane implements DataBoxTemplate{
 		Random r = new Random();
 		StackPane combinedPane = new StackPane();
 		Line line = new Line(); 
+		LLDataNode next;
 		int value = 0;
 	    protected Text t = new Text();
 	    
 		public LLDataNode(){
 			value = r.nextInt(1000);
+			
+			this.changeValue(value);
 			squareOne =  ShapeBuilder.square();
 			squareOne.setTranslateX(xOffSet);
+			t.setTranslateX(xOffSet);
 			squareTwo =  ShapeBuilder.square();
 			offSet();
 			squareTwo.setTranslateX(xOffSet);
@@ -41,7 +45,8 @@ public class LLDataNode extends Pane implements DataBoxTemplate{
 		 
 		    
 		}
-		  public static void offSet() {
+		  
+		public static void offSet() {
 		
 		       if(xOffSet < 1500) {
 		       	xOffSet+=ShapeBuilder.getLength();
@@ -76,7 +81,19 @@ public class LLDataNode extends Pane implements DataBoxTemplate{
 	    	this.value = x;
 	    	this.t.setText(Integer.toString(x));
 	    	return true;
+	    }  
+	    public boolean sentinel() {
+	    	this.value = 0;
+	    	this.t.setText("NULL");
+	    	return true;
 	    }
+
+		@Override
+		Color getColor() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 
 	    
 	}

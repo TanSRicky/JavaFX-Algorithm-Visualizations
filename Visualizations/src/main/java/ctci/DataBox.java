@@ -13,7 +13,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import java.util.Random;
 
-public class  DataBox extends Pane implements DataBoxTemplate {
+public class  DataBox  extends DataBoxTemplate {
 	
 	 static double xOffSet = ShapeBuilder.getLength();
      static double yOffSet = ShapeBuilder.getLength();
@@ -26,16 +26,19 @@ public class  DataBox extends Pane implements DataBoxTemplate {
      static int DataBoxCounter = 1;
      int index = 0;
      Random r = new Random();
-     int value;
+     
     
      public DataBox (){
-    	value = r.nextInt(1000);
+   
+    	value = r.nextInt(255);
         square =  ShapeBuilder.square();
         menu();
+        
         this.index = DataBoxCounter;
         changeValue(value);
+        setColor(Color.rgb(0,0, value, ((double)value/255.0)));
         OffSet();
-        s.getChildren().addAll(square,t);
+        s.getChildren().addAll(square);
  	    s.setLayoutX(xOffSet);
         s.setLayoutY(yOffSet);
   
@@ -61,6 +64,10 @@ public class  DataBox extends Pane implements DataBoxTemplate {
     public void setColor(Color c) {
     	this.square.setFill(c);
     }
+    @Override
+    public Color getColor() {
+    	return (Color) this.square.getFill();
+    }
     public boolean changeValue(int x) {
     	this.value = x;
     	this.t.setText(Integer.toString(x));
@@ -70,7 +77,7 @@ public class  DataBox extends Pane implements DataBoxTemplate {
 
     public void update() {
     
-    	this.t.setText(Integer.toString(this.value));
+    	
    
     }
     @SuppressWarnings("unchecked")
@@ -112,6 +119,7 @@ public class  DataBox extends Pane implements DataBoxTemplate {
 	    
     
     }
+
 
 
    
