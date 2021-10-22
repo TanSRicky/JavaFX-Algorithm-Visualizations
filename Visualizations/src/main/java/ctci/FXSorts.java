@@ -22,7 +22,7 @@ public class FXSorts {
      
 	public FXSorts(ArrayList<DataBoxTemplate> ps2) {
 		ps = ps2;
-    	timeline.setCycleCount(Animation.INDEFINITE);
+    	timeline.setCycleCount(0);
 	}
 	
 	
@@ -57,13 +57,17 @@ public class FXSorts {
 				final int index = i11;
 				final DataBoxTemplate tmp = ps.get(index);
 				final DataBoxTemplate tmp2 = ps.get(index + 1);
+				timeline.setCycleCount(timeline.getCycleCount()+1);
 				timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(rate), event -> {
+					
+					
 				if (tmp.value > tmp2.value) {
 							
 						
 							swap(index, index + 1);
 						
 						}
+	
 				}));
 				}
 			   

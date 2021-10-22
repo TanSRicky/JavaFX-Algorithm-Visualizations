@@ -11,20 +11,24 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 
 public class LLDataNode extends DataBoxTemplate{
+	
 		static double xOffSet = ShapeBuilder.getLength();
 		static double yOffSet = ShapeBuilder.getLength();
+		
 		Polygon squareOne;
 		Polygon squareTwo;
+		
 		Random r = new Random();
 		StackPane combinedPane = new StackPane();
 		Line line = new Line(); 
 		LLDataNode next;
+		
 		int value = 0;
 	    protected Text t = new Text();
 	    
 		public LLDataNode(){
+			System.out.println("created");
 			value = r.nextInt(1000);
-			
 			this.changeValue(value);
 			squareOne =  ShapeBuilder.square();
 			squareOne.setTranslateX(xOffSet);
@@ -32,7 +36,6 @@ public class LLDataNode extends DataBoxTemplate{
 			squareTwo =  ShapeBuilder.square();
 			offSet();
 			squareTwo.setTranslateX(xOffSet);
-		
 			line.setTranslateX(xOffSet+50);
 			line.setStartX(line.getTranslateX());
 			line.setEndX(line.getTranslateX()+100);

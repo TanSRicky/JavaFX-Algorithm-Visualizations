@@ -27,8 +27,8 @@ public abstract class CollectionTemplate {
     		@Override
     		public void handle(final MouseEvent event)
     		{
-    			squareGroup.setLayoutX(squareGroup.getLayoutX()+ event.getX());
-    			squareGroup.setLayoutY(squareGroup.getLayoutY()+event.getY() );
+    			squareGroup.setTranslateX(squareGroup.getTranslateX() + event.getX() - 200);
+    			squareGroup.setTranslateY(squareGroup.getTranslateY() + event.getY() - 50);
     		}
     	});
     }

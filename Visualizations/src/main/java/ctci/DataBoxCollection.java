@@ -28,13 +28,20 @@ public class DataBoxCollection extends CollectionTemplate
 		 
     }
     
-    
+
+	public void show() {
+		// TODO Auto-generated method stub
+		for (DataBoxTemplate d : ps) {
+			squareGroup.getChildren().addAll(d.getStackPane());
+		}
+		
+	}
        
 
 	@Override
 	public void populate() {
 		// TODO Auto-generated method stub
-		 for(int i = 0; i < 1000; i++) {
+		 for(int i = 0; i < 10; i++) {
 		   	    DataBox d = new DataBox();
 		   		squareGroup.getChildren().addAll(d.getStackPane());
 		   		ps.add(d);

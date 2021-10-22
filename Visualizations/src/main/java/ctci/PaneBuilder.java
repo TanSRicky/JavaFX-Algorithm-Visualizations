@@ -47,6 +47,8 @@ public class PaneBuilder {
 
 	DataBoxCollection dbc = new DataBoxCollection();
 	LinkedListDataBoxCollection ldb = new LinkedListDataBoxCollection();
+	TreeNodeCollection tnc = new TreeNodeCollection();
+	
 	Integer x = 0;
 	BorderPane bp = new BorderPane();
 	static MenuBar menuBar;
@@ -57,6 +59,7 @@ public class PaneBuilder {
 	Button label2 = new Button("sq-");
 	ButtonBase label3 = new Button("Stop");
 	Button llLabel = new Button("LL+");
+	Button tn = new Button("Tree Node");
 	Button partition = new Button("partition");
 	Button panDown = new Button("goDown");
 	Button panUp = new Button("goUp");
@@ -69,7 +72,7 @@ public class PaneBuilder {
 		pane.setMinHeight(1000);
 		pane.setTranslateX(100);
 		pane.setBackground(background);
-		pane.getChildren().addAll(dbc.getSquareGroup());
+		pane.getChildren().addAll(dbc.getSquareGroup(),tnc.getSquareGroup());
 		pane.getChildren().addAll(ldb.getSquareGroup());
 		vSeparator.relocate(100, 100);
 		bp.getChildren().add(menuBar);
@@ -79,7 +82,7 @@ public class PaneBuilder {
 		buttons();
 		bigPane.setBackground(new Background(new BackgroundFill(Color.DARKGREY, CornerRadii.EMPTY, Insets.EMPTY)));
 
-		vBox = new VBox(label1, label2, swap, label3, llLabel, partition, panDown, panUp, play);
+		vBox = new VBox(label1, label2, swap, label3, llLabel, partition, panDown, panUp, tn);
 
 		vBox.setTranslateY(25);
 		bigPane.getChildren().addAll(vBox, pane, menuBar);
@@ -111,10 +114,10 @@ public class PaneBuilder {
 
 	private void buttons() {
 
-		play.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
+		tn.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-
+				tnc.populate();
 			}
 		});
 		panUp.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {

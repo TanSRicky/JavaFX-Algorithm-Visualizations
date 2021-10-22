@@ -8,7 +8,7 @@ public class ShapeBuilder
 {
 	static Polygon polygon;
 	static Circle circle;
-    private static Double length = 10.0;
+    private static Double length = 40.0;
 	private static Double y = getLength()*2;
 	private static  Double x = getLength();
 	static Random rand = new Random();
@@ -37,14 +37,14 @@ public class ShapeBuilder
     {
     	Color c = new Color(rand.nextDouble(),rand.nextDouble(),rand.nextDouble(),rand.nextDouble());
     	circle = new Circle();
-   
+    	circle.setFill(c);
         circle.setStroke(Color.BLACK);
         // set the position of center of the  circle
         circle.setCenterX(0.0f);
         circle.setCenterY(0.0f);
   
         // set Radius of the circle
-        circle.setRadius(25.0f);
+        circle.setRadius(length/2);
   
         return circle;
 	}
