@@ -13,7 +13,7 @@ import javafx.util.Duration;
 
 public class FXSorts {
 	
-	static double rate = .1;
+	static double rate = .01;
     ArrayList<DataBoxTemplate> ps = new ArrayList<DataBoxTemplate>();
 	final static IntegerProperty x = new SimpleIntegerProperty(0);
 	static int quickSortQ = 0;
