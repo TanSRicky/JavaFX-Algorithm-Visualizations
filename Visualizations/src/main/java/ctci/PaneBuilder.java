@@ -66,7 +66,7 @@ public class PaneBuilder {
 	Button play = new Button("play");
 
 	{
-
+		for(int i = 0; i < 1000; i++) {dbc.populate();}
 		menuBar = menuBar();
 		pane.setMinWidth(1900);
 		pane.setMinHeight(1000);
@@ -105,7 +105,6 @@ public class PaneBuilder {
 		});
 		Menu squareMenu = new Menu("Menu");
 		squareMenu.getItems().addAll(item);
-
 		menuBar.getMenus().addAll(squareMenu);
 		menuBar.setPrefWidth(2500);
 		menuBar.setPrefHeight(10);
@@ -137,7 +136,7 @@ public class PaneBuilder {
 		label1.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				dbc.populate();
+				dbc.toggleVisibility();
 			}
 		});
 

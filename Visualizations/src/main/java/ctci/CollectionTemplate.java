@@ -51,6 +51,10 @@ public abstract class CollectionTemplate {
 	{
 		this.ps = ps;
 	}
+	public void toggleVisibility() 
+	{
+		this.squareGroup.setVisible(!this.squareGroup.isVisible());
+	}
 
     
     public abstract void populate();

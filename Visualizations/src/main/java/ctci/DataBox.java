@@ -25,23 +25,21 @@ public class  DataBox  extends DataBoxTemplate {
      protected Text t = new Text();
      static int DataBoxCounter = 1;
      int index = 0;
-     Random r = new Random();
+     static Random r = new Random(); 
      
     
      public DataBox (){
    
-    	value = r.nextInt(255);
-        square =  ShapeBuilder.square();
-        menu();
-        
-        this.index = DataBoxCounter;
-        changeValue(value);
-        setColor(Color.rgb(0,0, value, ((double)value/255.0)));
-        OffSet();
-        s.getChildren().addAll(square);
- 	    s.setLayoutX(xOffSet);
-        s.setLayoutY(yOffSet);
-  
+    	 value = r.nextInt(255);
+         square =  ShapeBuilder.square();
+         menu();
+         this.index = DataBoxCounter;
+         changeValue(value);
+         setColor(Color.rgb(0,0, value, ((double)value/255.0)));
+         OffSet();
+         s.getChildren().addAll(square);
+  	     s.setLayoutX(xOffSet);
+         s.setLayoutY(yOffSet);
       }
 
 

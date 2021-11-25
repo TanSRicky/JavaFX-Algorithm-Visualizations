@@ -38,7 +38,7 @@ public class LLDataNode extends DataBoxTemplate{
 			squareTwo.setTranslateX(xOffSet);
 			line.setTranslateX(xOffSet+50);
 			line.setStartX(line.getTranslateX());
-			line.setEndX(line.getTranslateX()+100);
+			line.setEndX(line.getTranslateX()+50);
 			line.setStartY(yOffSet+25);
 			line.setEndY(yOffSet+25);
 			offSet();
