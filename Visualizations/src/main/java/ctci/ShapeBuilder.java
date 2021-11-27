@@ -8,11 +8,11 @@ public class ShapeBuilder
 {
 	static Polygon polygon;
 	static Circle circle;
-    private static Double length = 25.0;
+    private static Double length = 19.0;
 	private static Double y = getLength()*2;
 	private static  Double x = getLength();
 	static Random rand = new Random();
-
+	
 	
     static Polygon square()
     {

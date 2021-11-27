@@ -20,13 +20,22 @@ public class DataBoxCollection extends CollectionTemplate{
 	
 	
     public DataBoxCollection(){
-    	
-  
+ 
      	
 		 
     }
     
-
+   public void OffSet() {
+        
+        if(xOffSet < 1500) {
+        	xOffSet+=ShapeBuilder.getLength();
+        
+        } else if (xOffSet >= 700) {
+        	xOffSet = ShapeBuilder.getLength();
+        	yOffSet = yOffSet + ShapeBuilder.getLength();
+        }
+ 	   
+    }
 	public void show() {
 		// TODO Auto-generated method stub
 		for (DataBoxTemplate d : ps) {
@@ -40,9 +49,10 @@ public class DataBoxCollection extends CollectionTemplate{
 	public void populate() {
 		// TODO Auto-generated method stub
 		
-		   	    DataBox d = new DataBox();
+		   	    DataBox d = new DataBox(xOffSet,yOffSet);
 		   		squareGroup.getChildren().add(d.getStackPane());
 		   		ps.add(d);
+		   		OffSet();
 		}
 	}
 

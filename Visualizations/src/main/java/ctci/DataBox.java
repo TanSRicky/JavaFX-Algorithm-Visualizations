@@ -15,8 +15,7 @@ import java.util.Random;
 
 public class  DataBox  extends DataBoxTemplate {
 	
-	 static double xOffSet = ShapeBuilder.getLength();
-     static double yOffSet = ShapeBuilder.getLength();
+	
      protected Polygon square;
      protected StackPane s = new StackPane();
 	 final Label label = new Label("c");
@@ -28,7 +27,7 @@ public class  DataBox  extends DataBoxTemplate {
      static Random r = new Random(); 
      
     
-     public DataBox (){
+     public DataBox (double x, double y){
    
     	 value = r.nextInt(255);
          square =  ShapeBuilder.square();
@@ -36,24 +35,14 @@ public class  DataBox  extends DataBoxTemplate {
          this.index = DataBoxCounter;
          changeValue(value);
          setColor(Color.rgb(0,0, value, ((double)value/255.0)));
-         OffSet();
          s.getChildren().addAll(square);
-  	     s.setLayoutX(xOffSet);
-         s.setLayoutY(yOffSet);
+  	     s.setLayoutX(x);
+         s.setLayoutY(y);
+         DataBoxCounter++;
       }
 
 
-   public static void OffSet() {
-       DataBoxCounter++;
-       if(xOffSet < 1500) {
-       	xOffSet+=ShapeBuilder.getLength();
-       
-       } else if (xOffSet >= 700) {
-       	xOffSet = ShapeBuilder.getLength();
-       	yOffSet = yOffSet + ShapeBuilder.getLength();
-       }
-	   
-   }
+
     public StackPane getStackPane() {
     	return this.s;
     }

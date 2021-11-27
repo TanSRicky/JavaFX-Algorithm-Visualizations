@@ -9,58 +9,53 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 
 // Need to build collections class for this 
 public class TreeDataNode extends DataBoxTemplate {
-	static double xOffSet = ShapeBuilder.getLength();
-	static double yOffSet = ShapeBuilder.getLength();
-	Circle circleOne;
-	Circle circleTwo;
+
+	Circle circleOne = ShapeBuilder.circle();
 	Random r = new Random();
 	StackPane combinedPane = new StackPane();
-	Line line = new Line();
-	Line linetwo = new Line();
+	LineTo line = new LineTo();
+	LineTo linetwo = new LineTo();
 	LLDataNode next;
 	int value = 0;
 	protected Text t = new Text();
+    static boolean left = true;
+	static double radius;
+	static double hypotenuse;
+	static double scaleFactor = 10;
+	public TreeDataNode(double x, double y) {
+		MoveTo moveTo = new MoveTo(50,50);
+		Path p = new Path(moveTo,line);
 
-	public TreeDataNode() {
+        combinedPane.getChildren().addAll(circleOne, t,p);
+    	combinedPane.setLayoutX(x);
+    	combinedPane.setLayoutY(y);
+
 		value = r.nextInt(1000);
-
 		this.changeValue(value);
-		circleOne = ShapeBuilder.circle();
-		circleOne.setTranslateX(xOffSet);
-
+		
+		radius = circleOne.getRadius();
 	
-		double r = circleOne.getRadius();
-		double hypotenuse = Math.sqrt(Math.pow(r, 2) + Math.pow(r, 2));
-		circleOne.setTranslateX(hypotenuse);
-		line.setTranslateX(2*hypotenuse);
-		t.setTranslateX(hypotenuse);
-		line.setTranslateY(hypotenuse);
-		line.setStartX(circleOne.getCenterX());
-		line.setEndX(hypotenuse);
-		line.setStartY(circleOne.getCenterY());
-		line.setEndY(hypotenuse);
-
+		line.setX(100);
+		line.setY(100);
+		p.setTranslateX(50);
+		p.setTranslateY(50);
 	
-		linetwo.setTranslateY(hypotenuse);
-		linetwo.setStartX(circleOne.getCenterX());
-		linetwo.setEndX(circleOne.getCenterX() - hypotenuse);
-		linetwo.setStartY(circleOne.getCenterY());
-		linetwo.setEndY(hypotenuse);
-		xOffSet += 2*hypotenuse;
-		yOffSet += 2*hypotenuse;
-		combinedPane.getChildren().addAll(circleOne, t, linetwo, line);
-		combinedPane.setLayoutX(xOffSet);
-		combinedPane.setLayoutY(yOffSet+50);
+	    
+	    System.out.println(radius);
+	    System.out.println(p.toString());
+	    System.out.println(line.toString());
+	    System.out.println(linetwo.toString());
 
-	}
-
-	public static void offSet() {
-
+        
+    	left = !left;
 		
 
 	}
