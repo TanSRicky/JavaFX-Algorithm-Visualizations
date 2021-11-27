@@ -1,7 +1,6 @@
 package ctci;
 
 import java.util.Random;
-
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -12,54 +11,49 @@ import javafx.scene.text.Text;
 
 public class LLDataNode extends DataBoxTemplate{
 	
-		static double xOffSet = ShapeBuilder.getLength();
-		static double yOffSet = ShapeBuilder.getLength();
-		
+	
 		Polygon squareOne;
 		Polygon squareTwo;
 		
 		Random r = new Random();
 		StackPane combinedPane = new StackPane();
-		Line line = new Line(); 
+		Line line;
 		LLDataNode next;
 		
 		int value = 0;
 	    protected Text t = new Text();
 	    
-		public LLDataNode(){
+		public LLDataNode(double x, double y){
+			line = new Line();
+	
 			System.out.println("created");
 			value = r.nextInt(1000);
 			this.changeValue(value);
 			squareOne =  ShapeBuilder.square();
-			squareOne.setTranslateX(xOffSet);
-			t.setTranslateX(xOffSet);
+			squareOne.setTranslateX(x);
+			t.setTranslateX(x);
 			squareTwo =  ShapeBuilder.square();
-			offSet();
-			squareTwo.setTranslateX(xOffSet);
-			line.setTranslateX(xOffSet+50);
-			line.setStartX(line.getTranslateX());
-			line.setEndX(line.getTranslateX()+50);
-			line.setStartY(yOffSet+25);
-			line.setEndY(yOffSet+25);
-			offSet();
+			x+=ShapeBuilder.getLength();
+		       
+			squareTwo.setTranslateX(x);
+		
+			line.setStartX(25);
+			line.setEndX(50);
+			line.setStartY(y+25);
+			line.setEndY(y+25);
+	
+			x+=ShapeBuilder.getLength();
+			line.setTranslateX(x);
+			
 			combinedPane.getChildren().addAll(squareOne,t,squareTwo,line);
-			combinedPane.setLayoutX(xOffSet);
-		    combinedPane.setLayoutY(yOffSet);
+			combinedPane.setLayoutX(x);
+		    combinedPane.setLayoutY(y);
 		 
-		    
+
+			
 		}
 		  
-		public static void offSet() {
 		
-		       if(xOffSet < 1500) {
-		       	xOffSet+=ShapeBuilder.getLength();
-		       
-		       } else if (xOffSet >= 700) {
-		       	xOffSet = ShapeBuilder.getLength();
-		       	yOffSet = yOffSet + ShapeBuilder.getLength();
-		       }
-			   
-		   }
 		
 		@Override
 		public StackPane getStackPane() {

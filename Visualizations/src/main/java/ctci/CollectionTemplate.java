@@ -12,7 +12,8 @@ public abstract class CollectionTemplate {
 	ArrayList<DataBoxTemplate> ps = new ArrayList<>();
 	FXSorts sorts = new FXSorts(ps);
 	double rate = .1;
-
+	double xOffSet = ShapeBuilder.getLength();
+    double yOffSet = ShapeBuilder.getLength();
     public CollectionTemplate() {
     	
     	squareGroup.addEventHandler(MouseEvent.MOUSE_CLICKED,new EventHandler<MouseEvent>() {
@@ -32,6 +33,8 @@ public abstract class CollectionTemplate {
     		}
     	});
     }
+    
+    public abstract void OffSet();
     public Group getSquareGroup()
     {
 		return squareGroup;

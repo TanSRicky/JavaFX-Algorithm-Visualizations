@@ -24,7 +24,7 @@ public class DataBoxGravity extends DataBox {
     boolean slide = true;
     boolean clickable = false;
     public DataBoxGravity() {
-    	super();
+    	super(0,0);
     }
     public void fall() 
     {
