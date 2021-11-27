@@ -5,3 +5,4 @@ Upon inspection, needs heavy optimization. Implement lazy evaluation for data in
 
 TODO
 Decouple data generation and graphical representations of data 
+![alt text](https://github.com/TanSRicky/JavaFX-Algorithm-Visualizations/blob/main/BeforeSortJavaFX.PNG?raw=true "Page 1")
