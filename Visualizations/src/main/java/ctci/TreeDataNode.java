@@ -17,9 +17,7 @@ import javafx.scene.text.Text;
 
 // Need to build collections class for this 
 public class TreeDataNode extends DataBoxTemplate {
-	static double xOffSet = ShapeBuilder.getLength();
-	static double LeftOffSet = ShapeBuilder.getLength();
-	static double yOffSet = ShapeBuilder.getLength();
+
 	Circle circleOne = ShapeBuilder.circle();
 	Random r = new Random();
 	StackPane combinedPane = new StackPane();
@@ -29,29 +27,17 @@ public class TreeDataNode extends DataBoxTemplate {
 	int value = 0;
 	protected Text t = new Text();
     static boolean left = true;
-	double leftOffSet;
-    double rightOffSet;
 	static double radius;
 	static double hypotenuse;
 	static double scaleFactor = 10;
-	public TreeDataNode() {
+	public TreeDataNode(double x, double y) {
 		MoveTo moveTo = new MoveTo(50,50);
 		Path p = new Path(moveTo,line);
-        if(left) {
-        	combinedPane.getChildren().addAll(circleOne, t,p);
-    		combinedPane.setLayoutX(LeftOffSet);
-    		combinedPane.setLayoutY(yOffSet+50);
-    		LeftOffSet -= 2*hypotenuse;
-    		yOffSet += 2*hypotenuse;
-        }
-        else {
-        	xOffSet+= 2*hypotenuse;
-        	combinedPane.getChildren().addAll(circleOne, t,p);
-    		combinedPane.setLayoutX(xOffSet);
-    		combinedPane.setLayoutY(yOffSet+50);
-    		
-    	  
-        }
+
+        combinedPane.getChildren().addAll(circleOne, t,p);
+    	combinedPane.setLayoutX(x);
+    	combinedPane.setLayoutY(y);
+
 		value = r.nextInt(1000);
 		this.changeValue(value);
 		
@@ -61,8 +47,7 @@ public class TreeDataNode extends DataBoxTemplate {
 		line.setY(100);
 		p.setTranslateX(50);
 		p.setTranslateY(50);
-		leftOffSet =circleOne.getTranslateX();
-	    rightOffSet = 2*hypotenuse;
+	
 	    
 	    System.out.println(radius);
 	    System.out.println(p.toString());
@@ -75,24 +60,6 @@ public class TreeDataNode extends DataBoxTemplate {
 
 	}
 
-    public double getLeftOffSet() {
-		return leftOffSet;
-	}
-
-
-	public void setLeftOffSet(double leftOffSet) {
-		this.leftOffSet = leftOffSet;
-	}
-
-
-	public double getRightOffSet() {
-		return rightOffSet;
-	}
-
-
-	public void setRightOffSet(double rightOffSet) {
-		this.rightOffSet = rightOffSet;
-	}
 	@Override
 	public StackPane getStackPane() {
 		// TODO Auto-generated method stub

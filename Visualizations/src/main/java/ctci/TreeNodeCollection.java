@@ -8,7 +8,9 @@ import javafx.scene.shape.Line;
 public class TreeNodeCollection extends CollectionTemplate {
 
 	public TreeNodeCollection() {
-
+		TreeDataNode t  = new TreeDataNode(xOffSet,yOffSet);
+		squareGroup.getChildren().addAll(t.combinedPane);
+		ps.add(t);
 	}
 	
 	
@@ -17,8 +19,7 @@ public class TreeNodeCollection extends CollectionTemplate {
 	@Override
 	public void populate() {
 		// TODO Auto-generated method stub
-		TreeDataNode t  = new TreeDataNode();
-
+		TreeDataNode t  = new TreeDataNode(xOffSet,yOffSet);
 		squareGroup.getChildren().addAll(t.combinedPane);
 		ps.add(t);
 

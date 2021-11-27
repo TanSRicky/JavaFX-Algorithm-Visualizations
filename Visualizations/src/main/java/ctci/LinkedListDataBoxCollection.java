@@ -17,19 +17,19 @@ public class LinkedListDataBoxCollection extends DataBoxCollection {
 		sentinel.sentinel();
 		squareGroup.getChildren().addAll(sentinel.combinedPane);
 		ps.add(sentinel);
-		super.OffSet();
+
 
 	}
 
 	public void populate() {
-
+	
 		LLDataNode node = new LLDataNode(xOffSet,yOffSet);
 		node.combinedPane.setTranslateX(xOffSet);
 		squareGroup.getChildren().addAll(node.combinedPane);
 		LLDataNode tmp = (LLDataNode) ps.get(ps.size() - 1);
 		tmp.next = node;
 		ps.add(node);
-		super.OffSet();
+		this.OffSet();
 
 	}
 
@@ -37,14 +37,14 @@ public class LinkedListDataBoxCollection extends DataBoxCollection {
 		// TODO Auto-generated method stub
 		return this.squareGroup;
 	}
-
+	@Override
 	   public void OffSet() {
-	        
-	        if(xOffSet < 1500) {
-	        	xOffSet+=ShapeBuilder.getLength()*6;
+	        System.out.println(xOffSet);
+	        if(xOffSet < 700) {
+	        	xOffSet+=ShapeBuilder.getLength();
 	        
 	        } else if (xOffSet >= 700) {
-	        	xOffSet = ShapeBuilder.getLength();
+	        	xOffSet = 0;
 	        	yOffSet = yOffSet + ShapeBuilder.getLength();
 	        }
 	 	   
