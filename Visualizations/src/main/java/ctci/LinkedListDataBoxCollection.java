@@ -10,19 +10,20 @@ import javafx.scene.shape.Line;
 
 public class LinkedListDataBoxCollection extends DataBoxCollection {
 	LLDataNode sentinel;
-
+	
 	public LinkedListDataBoxCollection() {
-
-		sentinel = new LLDataNode(xOffSet,yOffSet);
+		
+		sentinel = new LLDataNode(xOffSet+(ShapeBuilder.getLength()/2),yOffSet);
 		sentinel.sentinel();
 		squareGroup.getChildren().addAll(sentinel.combinedPane);
 		ps.add(sentinel);
-
+		this.OffSet();
 
 	}
-
-	public void populate() {
 	
+     @Override
+	public void populate() {
+		
 		LLDataNode node = new LLDataNode(xOffSet,yOffSet);
 		node.combinedPane.setTranslateX(xOffSet);
 		squareGroup.getChildren().addAll(node.combinedPane);

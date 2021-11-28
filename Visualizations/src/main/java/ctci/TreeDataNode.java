@@ -21,8 +21,7 @@ public class TreeDataNode extends DataBoxTemplate {
 	Circle circleOne = ShapeBuilder.circle();
 	Random r = new Random();
 	StackPane combinedPane = new StackPane();
-	LineTo line = new LineTo();
-	LineTo linetwo = new LineTo();
+
 	LLDataNode next;
 	int value = 0;
 	protected Text t = new Text();
@@ -31,10 +30,9 @@ public class TreeDataNode extends DataBoxTemplate {
 	static double hypotenuse;
 	static double scaleFactor = 10;
 	public TreeDataNode(double x, double y) {
-		MoveTo moveTo = new MoveTo(50,50);
-		Path p = new Path(moveTo,line);
 
-        combinedPane.getChildren().addAll(circleOne, t,p);
+
+        combinedPane.getChildren().addAll(circleOne, t);
     	combinedPane.setLayoutX(x);
     	combinedPane.setLayoutY(y);
 
@@ -43,16 +41,11 @@ public class TreeDataNode extends DataBoxTemplate {
 		
 		radius = circleOne.getRadius();
 	
-		line.setX(100);
-		line.setY(100);
-		p.setTranslateX(50);
-		p.setTranslateY(50);
 	
 	    
 	    System.out.println(radius);
-	    System.out.println(p.toString());
-	    System.out.println(line.toString());
-	    System.out.println(linetwo.toString());
+
+	  
 
         
     	left = !left;
