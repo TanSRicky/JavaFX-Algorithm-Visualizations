@@ -1,9 +1,5 @@
 package ctci;
 
-import java.util.Collection;
-
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 
 public class TreeNodeCollection extends CollectionTemplate {
 	int level = 0;
@@ -72,4 +68,13 @@ public class TreeNodeCollection extends CollectionTemplate {
   
         return result;
     }
+
+
+
+
+	@Override
+	public void buttons() {
+		// TODO Auto-generated method stub
+		
+	}
 }

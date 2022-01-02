@@ -17,8 +17,6 @@ import javafx.util.Duration;
 
 public class DataBoxCollection extends CollectionTemplate{
 	
-	
-	
     public DataBoxCollection(){
  
      	
@@ -26,7 +24,7 @@ public class DataBoxCollection extends CollectionTemplate{
     }
     
    public void OffSet() {
-        
+
         if(xOffSet < 1500) {
         	xOffSet+=ShapeBuilder.getLength();
         
@@ -54,5 +52,11 @@ public class DataBoxCollection extends CollectionTemplate{
 		   		ps.add(d);
 		   		OffSet();
 		}
+
+	@Override
+	public void buttons() {
+		// TODO Auto-generated method stub
+		
+	}
 	}
 

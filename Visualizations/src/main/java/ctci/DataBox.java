@@ -6,7 +6,6 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.ContextMenuEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -79,18 +78,7 @@ public class  DataBox  extends DataBoxTemplate {
 		
         });
 	    
-
-	    final MenuItem move = new MenuItem("Move");
-	    item.setOnAction(new EventHandler<ActionEvent>() {
-	    	
-			@Override
-	        public void handle(final ActionEvent event) {
-	            
-	         }
-			
-	    });
-	    
-	    
+	 
 	    contextMenu.getItems().addAll(item);
 	 	s.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
             @Override
