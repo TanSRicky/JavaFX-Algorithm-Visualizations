@@ -24,17 +24,16 @@ public class LLDataNode extends DataBoxTemplate{
 	    protected Text t = new Text();
 	    
 		public LLDataNode(double x, double y){
+			
 			line = new Line();
-	
-			System.out.println("created");
 			value = r.nextInt(1000);
 			this.changeValue(value);
 			squareOne =  ShapeBuilder.square();
 			squareOne.setTranslateX(x);
 			t.setTranslateX(x);
+			
 			squareTwo =  ShapeBuilder.square();
 			x+=ShapeBuilder.getLength();
-		       
 			squareTwo.setTranslateX(x);
 		
 			line.setStartX(25);
@@ -53,7 +52,6 @@ public class LLDataNode extends DataBoxTemplate{
 			
 		}
 		  
-		
 		
 		@Override
 		public StackPane getStackPane() {

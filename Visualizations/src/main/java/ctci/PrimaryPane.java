@@ -1,5 +1,7 @@
 package ctci;
 
+import java.util.ArrayList;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,6 +29,7 @@ public class PrimaryPane extends AnchorPane {
 	static MenuBar menuBar;
 	static PrimaryPane pane;
 	static Group g = new Group();
+	
 	final ContextMenu contextMenu = new ContextMenu();
 	final Pane bigPane = new Pane();
 	
@@ -40,21 +43,28 @@ public class PrimaryPane extends AnchorPane {
 
 	Separator separator = new Separator(Orientation.HORIZONTAL);
 	Separator vSeparator = new Separator(Orientation.VERTICAL);
-
+    ArrayList<CollectionTemplate> c = new ArrayList<>();
 	DataBoxCollection dbc = new DataBoxCollection();
 	LLCollection ldb = new LLCollection();
 	TreeNodeCollection tnc = new TreeNodeCollection();
+
 	
-//	Integer x = 0;
+
 	ObservableList<Node> pc;
 	BorderPane bp = new BorderPane();
 
-	MenuItem item = new MenuItem(Messages.getString("PrimaryPane.0")); //$NON-NLS-1$
+	
 	
 
 	PrimaryPane() {
+		c.add(dbc);
+		c.add(ldb);
+		c.add(tnc);
+		
 		PrimaryPane.pane = this;
+		
 		MenuBar menuBar = new MenuBar();
+		MenuItem item = new MenuItem(Messages.getString("TopBar.File.add")); //$NON-NLS-1$
 		item.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(final ActionEvent event) {
@@ -62,7 +72,7 @@ public class PrimaryPane extends AnchorPane {
 			}
 		});
 
-		final Menu squareMenu = new Menu(Messages.getString("PrimaryPane.12")); //$NON-NLS-1$
+		final Menu squareMenu = new Menu(Messages.getString("TopBar.File")); //$NON-NLS-1$
 
 		squareMenu.getItems().addAll(item);
 		menuBar.getMenus().addAll(squareMenu);

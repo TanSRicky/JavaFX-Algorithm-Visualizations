@@ -14,16 +14,18 @@ import java.util.Random;
 
 public class  DataBox  extends DataBoxTemplate {
 	
-	
-     protected Polygon square;
-     protected StackPane s = new StackPane();
 	 final Label label = new Label("c");
 	 final ContextMenu contextMenu = new ContextMenu();
 	 final MenuItem item = new MenuItem("Change value");
+	
+     protected Polygon square;
+     protected StackPane s = new StackPane();
      protected Text t = new Text();
+     
+     static Random r = new Random(); 
      static int DataBoxCounter = 1;
      int index = 0;
-     static Random r = new Random(); 
+
      
     
      public DataBox (double x, double y){
@@ -66,7 +68,7 @@ public class  DataBox  extends DataBoxTemplate {
     	
    
     }
-    @SuppressWarnings("unchecked")
+
 	private void menu() {
 
 	    item.setOnAction(new EventHandler<ActionEvent>() {
@@ -78,17 +80,7 @@ public class  DataBox  extends DataBoxTemplate {
 		
         });
 	    
-	 
-	    contextMenu.getItems().addAll(item);
-	 	s.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
-            @Override
-            
-            public void handle(final ContextMenuEvent event) {
-                contextMenu.show(s, event.getScreenX(), event.getScreenY());
-            }
-            
-        });
-
+	
 		
 	
 	    

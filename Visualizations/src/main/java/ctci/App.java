@@ -1,7 +1,9 @@
 package ctci;
 
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -29,17 +31,13 @@ public class App extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-	       
-    	
-	    	scene  = new Scene(pb.getGroup(),1920,1080);
+
+    		Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+	    	scene  = new Scene(pb.getGroup(),primaryScreenBounds.getMinX(),primaryScreenBounds.getMinY());
 	     	primaryStage.setScene(scene);
 	    	primaryStage.show();
 	   	 
     }
-
-	
-
- 
     
     /**
      * The main method.
