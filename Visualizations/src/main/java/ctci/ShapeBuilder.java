@@ -29,7 +29,7 @@ public class ShapeBuilder
                 getLength()+x,getLength()+y,    
                 x,getLength() +y       
                 }                         );
-        
+        polygon.toBack();
         return polygon;
 	}
 
@@ -45,7 +45,7 @@ public class ShapeBuilder
   
         // set Radius of the circle
         circle.setRadius(length/2);
-  
+        circle.toBack();
         return circle;
 	}
 

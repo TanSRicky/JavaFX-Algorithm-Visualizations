@@ -5,7 +5,7 @@ package ctci;
 //which provides a time line to it.
 
 public class DataBoxCollection extends CollectionTemplate{
-	
+   
     public DataBoxCollection(){
  
      	

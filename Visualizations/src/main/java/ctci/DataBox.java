@@ -1,11 +1,5 @@
-package ctci;
+ package ctci;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -14,17 +8,13 @@ import java.util.Random;
 
 public class  DataBox  extends DataBoxTemplate {
 	
-	 final Label label = new Label("c");
-	 final ContextMenu contextMenu = new ContextMenu();
-	 final MenuItem item = new MenuItem("Change value");
+
 	
-     protected Polygon square;
-     protected StackPane s = new StackPane();
-     protected Text t = new Text();
-     
+     private Polygon square;
+     private StackPane s = new StackPane();
+     private Text t = new Text();
      static Random r = new Random(); 
      static int DataBoxCounter = 1;
-     int index = 0;
 
      
     
@@ -32,8 +22,6 @@ public class  DataBox  extends DataBoxTemplate {
    
     	 value = r.nextInt(255);
          square =  ShapeBuilder.square();
-         menu();
-         this.index = DataBoxCounter;
          changeValue(value);
          setColor(Color.rgb(0,0, value, ((double)value/255.0)));
          s.getChildren().addAll(square);
@@ -69,27 +57,7 @@ public class  DataBox  extends DataBoxTemplate {
    
     }
 
-	private void menu() {
 
-	    item.setOnAction(new EventHandler<ActionEvent>() {
-	    	
-	    	@Override
-	        public void handle(final ActionEvent event) {
-	            
-	         }
-		
-        });
-	    
-	
-		
-	
-	    
-    
-    }
-
-
-
-   
 	
 
 

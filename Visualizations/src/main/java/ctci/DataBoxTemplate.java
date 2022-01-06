@@ -1,9 +1,9 @@
 package ctci;
 
-import javafx.scene.layout.Pane;
+
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+
 
 public abstract class DataBoxTemplate   {
 
@@ -13,4 +13,5 @@ public abstract class DataBoxTemplate   {
 	abstract void setColor(Color orange);
 	abstract Color getColor();
 	abstract boolean changeValue(int x);
+
 }
