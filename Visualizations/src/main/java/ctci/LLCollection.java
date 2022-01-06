@@ -1,17 +1,11 @@
 package ctci;
 
-import java.util.ArrayList;
-
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Line;
 
-public class LinkedListDataBoxCollection extends DataBoxCollection {
+public class LLCollection extends DataBoxCollection {
 	LLDataNode sentinel;
 	
-	public LinkedListDataBoxCollection() {
+	public LLCollection() {
 		
 		sentinel = new LLDataNode(xOffSet+(ShapeBuilder.getLength()/2),yOffSet);
 		sentinel.sentinel();

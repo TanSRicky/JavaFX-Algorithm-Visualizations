@@ -1,18 +1,10 @@
 package ctci;
 
 import java.util.Random;
-import java.lang.Math;
 
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 
 // Need to build collections class for this 
@@ -90,5 +82,7 @@ public class TreeDataNode extends DataBoxTemplate {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

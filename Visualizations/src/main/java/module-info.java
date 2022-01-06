@@ -1,8 +1,8 @@
 module ctci {
-    requires javafx.controls;
-    requires javafx.fxml;
-	requires javafx.graphics;
-	requires javafx.base;
+    requires transitive  javafx.controls;
+    requires transitive  javafx.fxml;
+	requires transitive  javafx.graphics;
+	requires transitive  javafx.base;
 	requires java.desktop;
 
     opens ctci to javafx.fxml;
