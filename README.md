@@ -1,10 +1,11 @@
 # JavaFX-Algorithm-Visualizations
-
-Upon inspection, needs heavy optimization. Implement lazy evaluation for data instead of coupling data with java fx display. Data should be copied and created minimally. 
-
-
 TODO
-Decouple data generation and graphical representations of data 
+Create option to make pixel arrays n-dimensional.
+Implement n-dimensional algorithms (matrix transposes, spiral sort, pixel array rotation, etc)
+Implement tree lines and option for n-levels
+Implement linked-list sorts 
+Implement heaps, heap sort, and merge sort
+
 ![alt text](https://github.com/TanSRicky/JavaFX-Algorithm-Visualizations/blob/main/AlgoViz2.PNG?raw=true "Page 1")
 
 
