@@ -1,21 +1,23 @@
 package ctci;
 
+import javafx.beans.property.BooleanProperty;
 
 public class TreeNodeCollection extends CollectionTemplate {
 	int level = 0;
 
 	
-	public TreeNodeCollection() {
+	public TreeNodeCollection(BooleanProperty s) {
+		super(s);
 		this.xOffSet = -475;
-		int startSet = -500;
+		int startSet = -750;
 		TreeDataNode t;
 	
 		level++;
-		int spacing = 50;																	
+		int spacing = 10;																	
 
 	   //probably better to reflect off of the 0 point to each side, and work from inside
 	    	          //This way guarantees space for the nodes on the inside  or start from btm
-		for (int i = 5; i >=0 ; i--) {
+		for (int i = 10; i >=0 ; i--) {
 			for (int j = 0; j < Math.pow(2,i); j++ ) {
 				t  = new TreeDataNode(xOffSet,yOffSet);
 				squareGroup.getChildren().addAll(t.combinedPane);
@@ -32,6 +34,7 @@ public class TreeNodeCollection extends CollectionTemplate {
 		
 		}
 		
+		squareGroup.setScaleX(.7);
 		
 	}
 	

@@ -7,16 +7,13 @@ import javafx.scene.text.Text;
 import java.util.Random;
 
 public class  DataBox  extends DataBoxTemplate {
-	
 
-	
      private Polygon square;
      private StackPane s = new StackPane();
      private Text t = new Text();
      static Random r = new Random(); 
      static int DataBoxCounter = 1;
 
-     
     
      public DataBox (double x, double y){
    

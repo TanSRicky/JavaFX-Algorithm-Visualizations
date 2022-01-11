@@ -1,14 +1,14 @@
 package ctci;
 
+import javafx.beans.property.BooleanProperty;
 
 //Each data box collection has an FX sorts
 //which provides a time line to it.
 
 public class DataBoxCollection extends CollectionTemplate{
    
-    public DataBoxCollection(){
- 
-     	
+    public DataBoxCollection(BooleanProperty s){
+    	super(s);
 		 
     }
     
@@ -35,8 +35,9 @@ public class DataBoxCollection extends CollectionTemplate{
 	@Override
 	public void populate() {
 		// TODO Auto-generated method stub
-		
+			
 		   	    DataBox d = new DataBox(xOffSet,yOffSet);
+			
 		   		squareGroup.getChildren().add(d.getStackPane());
 		   		ps.add(d);
 		   		OffSet();

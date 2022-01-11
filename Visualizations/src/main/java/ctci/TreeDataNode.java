@@ -13,35 +13,22 @@ public class TreeDataNode extends DataBoxTemplate {
 	Circle circleOne = ShapeBuilder.circle();
 	Random r = new Random();
 	StackPane combinedPane = new StackPane();
-
 	LLDataNode next;
-	int value = 0;
 	protected Text t = new Text();
     static boolean left = true;
 	static double radius;
 	static double hypotenuse;
 	static double scaleFactor = 10;
+	
 	public TreeDataNode(double x, double y) {
-
-
         combinedPane.getChildren().addAll(circleOne, t);
     	combinedPane.setLayoutX(x);
     	combinedPane.setLayoutY(y);
-
+    	
 		value = r.nextInt(1000);
 		this.changeValue(value);
-		
-		radius = circleOne.getRadius();
-	
-	
-	    
-	    System.out.println(radius);
-
-	  
-
-        
+		radius = circleOne.getRadius();        
     	left = !left;
-		
 
 	}
 
