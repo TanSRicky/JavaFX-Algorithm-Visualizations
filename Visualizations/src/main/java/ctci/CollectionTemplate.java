@@ -1,37 +1,64 @@
 package ctci;
 
 import java.util.ArrayList;
+
+import javafx.scene.shape.Rectangle;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
+import javafx.geometry.Insets;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+
 import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 public abstract class CollectionTemplate extends Pane {
 
-	Group squareGroup = new Group();
+	Pane squareGroup = new Pane();
 	ArrayList<DataBoxTemplate> ps = new ArrayList<>();
 	FXSorts sorts = new FXSorts(ps);
 	protected double xOffSet = ShapeBuilder.getLength();
 	protected double yOffSet = ShapeBuilder.getLength();
 	final ContextMenu contextMenu = new ContextMenu();
-	
+	final Rectangle redBorder = new Rectangle(0, 0, Color.TRANSPARENT);
 	MenuItem sort = new MenuItem(Messages.getString("Collection.sort")); //$NON-NLS-1$
 	MenuItem edit = new MenuItem(Messages.getString("Collection.edit")); //$NON-NLS-1$
+    protected BooleanProperty selected = null;
 
+	public CollectionTemplate(BooleanProperty s) {
+		this.selected = s;
 
-	public CollectionTemplate() {
-
+	    Border border = new Border(new BorderStroke(Color.RED, 
+				BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
 		contextMenu.getItems().addAll(sort,edit);
-
 		squareGroup.addEventHandler(MouseEvent.MOUSE_CLICKED,new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(final MouseEvent event) {
-
+				if(event.getButton().equals(MouseButton.PRIMARY)){
+		            if(event.getClickCount() == 2){
+		
+						selected.setValue(!selected.getValue());
+						if(selected.getValue() == false) {
+							squareGroup.setBorder(border);
+						} else {
+							squareGroup.setBorder(Border.EMPTY);
+						}
 			}
+		}}
 		});
+	
 
 		squareGroup.setOnMouseDragged(new EventHandler<MouseEvent>()
 		{	
@@ -50,15 +77,16 @@ public abstract class CollectionTemplate extends Pane {
 
 		});
 
+
 	}
 
 	public abstract void OffSet();
 
-	public Group getSquareGroup() {
+	public Pane getSquareGroup() {
 		return squareGroup;
 	}
 
-	public void setSquareGroup(Group squareGroup) {
+	public void setSquareGroup(BorderPane squareGroup) {
 		this.squareGroup = squareGroup;
 	}
 

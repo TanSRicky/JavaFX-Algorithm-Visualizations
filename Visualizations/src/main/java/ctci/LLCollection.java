@@ -1,12 +1,14 @@
 package ctci;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.scene.Group;
 
 public class LLCollection extends DataBoxCollection {
+
 	LLDataNode sentinel;
 	
-	public LLCollection() {
-		
+	public LLCollection(BooleanProperty selected) {
+		super(selected);
 		sentinel = new LLDataNode(xOffSet+(ShapeBuilder.getLength()/2),yOffSet);
 		sentinel.sentinel();
 		squareGroup.getChildren().addAll(sentinel.combinedPane);
@@ -28,10 +30,7 @@ public class LLCollection extends DataBoxCollection {
 
 	}
 
-	public Group getSquareGroup() {
-		// TODO Auto-generated method stub
-		return this.squareGroup;
-	}
+
 	@Override
 	   public void OffSet() {
 	        System.out.println(xOffSet);

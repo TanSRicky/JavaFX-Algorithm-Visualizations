@@ -19,8 +19,6 @@ public class LLDataNode extends DataBoxTemplate{
 		StackPane combinedPane = new StackPane();
 		Line line;
 		LLDataNode next;
-		
-		int value = 0;
 	    protected Text t = new Text();
 	    
 		public LLDataNode(double x, double y){

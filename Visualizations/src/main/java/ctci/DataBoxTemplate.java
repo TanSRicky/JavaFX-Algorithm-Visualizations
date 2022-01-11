@@ -14,4 +14,5 @@ public abstract class DataBoxTemplate   {
 	abstract Color getColor();
 	abstract boolean changeValue(int x);
 
+
 }

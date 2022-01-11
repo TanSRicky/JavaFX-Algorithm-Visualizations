@@ -1,6 +1,8 @@
 package ctci;
 
 import javafx.application.Application;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,7 +18,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -27,6 +33,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -58,7 +65,8 @@ public class App extends Application {
 	static Rectangle2D        primaryScreenBounds;
 	final static Pane leftPane = new Pane();
 	final static ListView<String> listView = new ListView<String>();
-    
+    static BooleanProperty nodeSelected = new SimpleBooleanProperty(false);
+    static ListView<String>bottom = new ListView<>();
 
 	/**
      * Start.
@@ -69,34 +77,48 @@ public class App extends Application {
 	
     @Override
     public void start(Stage primaryStage) throws IOException {
+
+        ScrollPane sp = new ScrollPane();
+		bottom.setBackground(new Background(new BackgroundFill(Color.DARKSLATEGREY ,CornerRadii.EMPTY, Insets.EMPTY)));
+
     	primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 		leftPane.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
-		pane.setBackground(new Background(new BackgroundFill(Color.WHITE ,CornerRadii.EMPTY, Insets.EMPTY)));
+		pane.setBackground(new Background(new BackgroundFill(Color.LIGHTSTEELBLUE  ,CornerRadii.EMPTY, Insets.EMPTY)));
 		borderPane.setBackground(new Background(new BackgroundFill(Color.DARKGREY, CornerRadii.EMPTY, Insets.EMPTY)));
+        bottom.setPrefSize(1920,150);
+        bottom.setEditable(false);
+		sp.setContent(pane);
 
-
-
-		borderPane.setCenter(pane);
+		sp.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+		sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		bottom.setPrefHeight(150);
+		bottom.setMinHeight(100);
+		
+		borderPane.setCenter(sp);
 		borderPane.setLeft(leftPane);
 		borderPane.setTop(menuBar);
-		pane.getChildren().addAll(g);
+		borderPane.setBottom(bottom);
+
+		pane.getChildren().add(g);
 		menuBar.getMenus().addAll(squareMenu);
 		squareMenu.getItems().addAll(addItem);
 		addItem.getItems().addAll(pixelGridAdd,linkedListAdd,treeAdd);
 		leftPane.getChildren().addAll(listView);
-	
-		menuBar.setPrefWidth(2500);
-		menuBar.setPrefHeight(10);
-		
 
+		menuBar.setPrefWidth(1600);
+		menuBar.setPrefHeight(10);
+
+		 sp.setPrefHeight(750);
+		 pane.setPrefHeight(750);
+
+		
 		listView.setMinWidth(75);
 		listView.prefWidth(100);
-		listView.setMinHeight(1000);
-		leftPane.setMinSize(25,1000);
+		listView.setMinHeight(600);
+		leftPane.setMinSize(25,500);
 		leftPane.setOpacity(1.0);
 	
 		scene = new Scene(borderPane,primaryScreenBounds.getMinX(),primaryScreenBounds.getMinY());
-		
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
 	   	 
@@ -113,11 +135,18 @@ public class App extends Application {
 		pixelGridAdd.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				DataBoxCollection tmp = new DataBoxCollection();
+				
+				DataBoxCollection tmp = new DataBoxCollection(nodeSelected);
 				for (int i = 0; i < 100; i++) {	tmp.populate(); }
 				collectionsList.add(tmp);
 				listView.getItems().addAll(tmp.toString());
 				g.getChildren().addAll(tmp.getSquareGroup());
+				ArrayList<Integer> valTmp = new ArrayList<>();
+				for(DataBoxTemplate db : tmp.getPs()) {
+					valTmp.add(db.value);
+				}
+				bottom.getItems().addAll(valTmp.toString());
+				
 				
 			}
 		});
@@ -125,11 +154,16 @@ public class App extends Application {
 		linkedListAdd.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				LLCollection tmp = new LLCollection();
+				LLCollection tmp = new LLCollection(nodeSelected);
 				for (int i = 0; i < 100; i++) {	tmp.populate(); }
 				collectionsList.add(tmp);
 				listView.getItems().addAll(tmp.toString());
 				g.getChildren().addAll(tmp.getSquareGroup());
+				ArrayList<Integer> valTmp = new ArrayList<>();
+				for(DataBoxTemplate db : tmp.getPs()) {
+					valTmp.add(db.value);
+				}
+				bottom.getItems().addAll(valTmp.toString());
 				
 			}
 		});
@@ -137,12 +171,17 @@ public class App extends Application {
 		treeAdd.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				TreeNodeCollection tmp = new TreeNodeCollection();
-				for (int i = 0; i < 100; i++) {	tmp.populate(); }
+				
+				TreeNodeCollection tmp = new TreeNodeCollection(nodeSelected);
+			    tmp.populate(); 
 				collectionsList.add(tmp);
 				listView.getItems().addAll(tmp.toString());
 				g.getChildren().addAll(tmp.getSquareGroup());
-				
+				ArrayList<Integer> valTmp = new ArrayList<>();
+				for(DataBoxTemplate db : tmp.getPs()) {
+					valTmp.add(db.value);
+				}
+				bottom.getItems().addAll(valTmp.toString());
 			}
 		});
 	}
