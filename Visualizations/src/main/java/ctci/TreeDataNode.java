@@ -21,15 +21,14 @@ public class TreeDataNode extends DataBoxTemplate {
 	static double scaleFactor = 10;
 	
 	public TreeDataNode(double x, double y) {
+		
         combinedPane.getChildren().addAll(circleOne, t);
     	combinedPane.setLayoutX(x);
     	combinedPane.setLayoutY(y);
-    	
 		value = r.nextInt(1000);
 		this.changeValue(value);
-		radius = circleOne.getRadius();        
-    	left = !left;
-
+		radius = circleOne.getRadius();      
+		
 	}
 
 	@Override
