@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 
 import javafx.scene.input.ContextMenuEvent;
@@ -26,15 +27,15 @@ import javafx.scene.paint.Color;
 
 public abstract class CollectionTemplate extends Pane {
 
-	Pane squareGroup = new Pane();
-	ArrayList<DataBoxTemplate> ps = new ArrayList<>();
-	FXSorts sorts = new FXSorts(ps);
+	protected Pane squareGroup = new Pane();
+	protected ArrayList<DataBoxTemplate> ps = new ArrayList<>();
+	protected FXSorts sorts = new FXSorts(ps);
 	protected double xOffSet = ShapeBuilder.getLength();
 	protected double yOffSet = ShapeBuilder.getLength();
 	final ContextMenu contextMenu = new ContextMenu();
 	final Rectangle redBorder = new Rectangle(0, 0, Color.TRANSPARENT);
-	MenuItem sort = new MenuItem(Messages.getString("Collection.sort")); //$NON-NLS-1$
-	MenuItem edit = new MenuItem(Messages.getString("Collection.edit")); //$NON-NLS-1$
+	protected Menu sort = new Menu(Messages.getString("Collection.sort")); //$NON-NLS-1$
+	protected MenuItem edit = new MenuItem(Messages.getString("Collection.edit")); //$NON-NLS-1$
     protected BooleanProperty selected = null;
 
 	public CollectionTemplate(BooleanProperty s) {

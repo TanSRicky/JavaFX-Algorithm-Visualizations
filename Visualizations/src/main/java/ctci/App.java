@@ -3,37 +3,27 @@ package ctci;
 import javafx.application.Application;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -49,24 +39,26 @@ import java.util.ArrayList;
 
 public class App extends Application {
 	
-	final static MenuBar menuBar = new MenuBar();
-	final static Pane pane = new Pane();
-	final static Group g = new Group();
+
+	final static Pane centerPane = new Pane();
+	final static Group structureGroup = new Group();
+	
 	final static ContextMenu contextMenu = new ContextMenu();
 	final static BorderPane borderPane = new BorderPane();
-	final static Menu squareMenu = new Menu(Messages.getString("TopBar.File")); //$NON-NLS-1$
-	final static Menu addItem = new Menu(Messages.getString("TopBar.File.add")); //$NON-NLS-1$
-	final static MenuItem pixelGridAdd = new MenuItem(Messages.getString("Add new pixel array"));
-	final static MenuItem linkedListAdd = new MenuItem(Messages.getString("Add new linkedlist"));
-	final static MenuItem treeAdd = new MenuItem(Messages.getString("Add new tree"));
-    final static ArrayList<CollectionTemplate> collectionsList = new ArrayList<>();
-	final static ObservableList<Node> pc = null;
-	static Scene scene = null;
+	
+	final static MenuBar menuBar = new MenuBar();
+	final static Menu fileMenu = new Menu(Messages.getString("TopBar.File"));							 //$NON-NLS-1$
+	final static Menu addItem = new Menu(Messages.getString("TopBar.File.add")); 						 //$NON-NLS-1$
+	final static MenuItem addDataBoxCollection = new MenuItem(Messages.getString("TopBar.File.add.Array")); //$NON-NLS-1$
+	final static MenuItem addLinkedList = new MenuItem(Messages.getString("TopBar.File.add.LinkedList"));//$NON-NLS-1$
+	final static MenuItem addTree = new MenuItem(Messages.getString("TopBar.File.add.Tree"));		     //$NON-NLS-1$
+    final static ArrayList<CollectionTemplate> structures = new ArrayList<>();
+    final static Pane leftPane = new Pane();
+	final static ListView<String> leftList = new ListView<String>();
+	static Scene scene;
 	static Rectangle2D        primaryScreenBounds;
-	final static Pane leftPane = new Pane();
-	final static ListView<String> listView = new ListView<String>();
     static BooleanProperty nodeSelected = new SimpleBooleanProperty(false);
-    static ListView<String>bottom = new ListView<>();
+    static ListView<String> bottomList = new ListView<>();
 
 	/**
      * Start.
@@ -77,44 +69,44 @@ public class App extends Application {
 	
     @Override
     public void start(Stage primaryStage) throws IOException {
-
+  
         ScrollPane sp = new ScrollPane();
-		bottom.setBackground(new Background(new BackgroundFill(Color.DARKSLATEGREY ,CornerRadii.EMPTY, Insets.EMPTY)));
+		bottomList.setBackground(new Background(new BackgroundFill(Color.DARKSLATEGREY ,CornerRadii.EMPTY, Insets.EMPTY)));
 
     	primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 		leftPane.setBackground(new Background(new BackgroundFill(Color.ORANGE, CornerRadii.EMPTY, Insets.EMPTY)));
-		pane.setBackground(new Background(new BackgroundFill(Color.LIGHTSTEELBLUE  ,CornerRadii.EMPTY, Insets.EMPTY)));
+		centerPane.setBackground(new Background(new BackgroundFill(Color.LIGHTSTEELBLUE  ,CornerRadii.EMPTY, Insets.EMPTY)));
 		borderPane.setBackground(new Background(new BackgroundFill(Color.DARKGREY, CornerRadii.EMPTY, Insets.EMPTY)));
-        bottom.setPrefSize(1920,150);
-        bottom.setEditable(false);
-		sp.setContent(pane);
-
+        bottomList.setPrefSize(1920,150);
+        bottomList.setEditable(false);
+		sp.setContent(centerPane);
+   
 		sp.setHbarPolicy(ScrollBarPolicy.ALWAYS);
 		sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-		bottom.setPrefHeight(150);
-		bottom.setMinHeight(100);
-		
+		bottomList.setPrefHeight(150);
+		bottomList.setMinHeight(100);
+		leftList.setPrefHeight(1000);
 		borderPane.setCenter(sp);
 		borderPane.setLeft(leftPane);
 		borderPane.setTop(menuBar);
-		borderPane.setBottom(bottom);
-
-		pane.getChildren().add(g);
-		menuBar.getMenus().addAll(squareMenu);
-		squareMenu.getItems().addAll(addItem);
-		addItem.getItems().addAll(pixelGridAdd,linkedListAdd,treeAdd);
-		leftPane.getChildren().addAll(listView);
+		borderPane.setBottom(bottomList);
+		leftPane.setPrefHeight(1000);
+		centerPane.getChildren().add(structureGroup);
+		menuBar.getMenus().addAll(fileMenu);
+		fileMenu.getItems().addAll(addItem);
+		addItem.getItems().addAll(addDataBoxCollection,addLinkedList,addTree);
+		leftPane.getChildren().addAll(leftList);
 
 		menuBar.setPrefWidth(1600);
 		menuBar.setPrefHeight(10);
 
 		 sp.setPrefHeight(750);
-		 pane.setPrefHeight(750);
+		 centerPane.setPrefHeight(1000);
 
-		
-		listView.setMinWidth(75);
-		listView.prefWidth(100);
-		listView.setMinHeight(600);
+		centerPane.setPrefWidth(1920);
+		leftList.setMinWidth(75);
+		leftList.prefWidth(100);
+		leftList.setMinHeight(600);
 		leftPane.setMinSize(25,500);
 		leftPane.setOpacity(1.0);
 	
@@ -125,63 +117,65 @@ public class App extends Application {
     }
 	
 	public static void handles() {
-		pane.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
+		centerPane.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
 			@Override
 			public void handle(final ContextMenuEvent event) {
-				contextMenu.show(pane, event.getScreenX(), event.getScreenY());
+				contextMenu.show(centerPane, event.getScreenX(), event.getScreenY());
 			}
 		});
 		
-		pixelGridAdd.setOnAction(new EventHandler<ActionEvent>() {
+		addDataBoxCollection.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				
-				DataBoxCollection tmp = new DataBoxCollection(nodeSelected);
-				for (int i = 0; i < 100; i++) {	tmp.populate(); }
-				collectionsList.add(tmp);
-				listView.getItems().addAll(tmp.toString());
-				g.getChildren().addAll(tmp.getSquareGroup());
-				ArrayList<Integer> valTmp = new ArrayList<>();
-				for(DataBoxTemplate db : tmp.getPs()) {
-					valTmp.add(db.value);
-				}
-				bottom.getItems().addAll(valTmp.toString());
+
+			      DataBoxCollection tmp = new DataBoxCollection(nodeSelected);
+					for (int i = 0; i < 100; i++) {	tmp.populate(); }
+					structures.add(tmp);
+					leftList.getItems().addAll(tmp.toString());
+					structureGroup.getChildren().addAll(tmp.getSquareGroup());
+					ArrayList<Integer> valTmp = new ArrayList<>();
+					for(DataBoxTemplate db : tmp.getPs()) {
+						valTmp.add(db.value);
+					}
+					bottomList.getItems().addAll(valTmp.toString());
+			
 				
 				
 			}
 		});
 		
-		linkedListAdd.setOnAction(new EventHandler<ActionEvent>() {
+		addLinkedList.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				LLCollection tmp = new LLCollection(nodeSelected);
 				for (int i = 0; i < 100; i++) {	tmp.populate(); }
-				collectionsList.add(tmp);
-				listView.getItems().addAll(tmp.toString());
-				g.getChildren().addAll(tmp.getSquareGroup());
+				structures.add(tmp);
+				leftList.getItems().addAll(tmp.toString());
+				structureGroup.getChildren().addAll(tmp.getSquareGroup());
 				ArrayList<Integer> valTmp = new ArrayList<>();
 				for(DataBoxTemplate db : tmp.getPs()) {
 					valTmp.add(db.value);
 				}
-				bottom.getItems().addAll(valTmp.toString());
+				bottomList.getItems().addAll(valTmp.toString());
 				
 			}
 		});
 		
-		treeAdd.setOnAction(new EventHandler<ActionEvent>() {
+		addTree.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				
 				TreeNodeCollection tmp = new TreeNodeCollection(nodeSelected);
 			    tmp.populate(); 
-				collectionsList.add(tmp);
-				listView.getItems().addAll(tmp.toString());
-				g.getChildren().addAll(tmp.getSquareGroup());
+				structures.add(tmp);
+				leftList.getItems().addAll(tmp.toString());
+				structureGroup.getChildren().addAll(tmp.getSquareGroup());
 				ArrayList<Integer> valTmp = new ArrayList<>();
 				for(DataBoxTemplate db : tmp.getPs()) {
 					valTmp.add(db.value);
 				}
-				bottom.getItems().addAll(valTmp.toString());
+				bottomList.getItems().addAll(valTmp.toString());
+			
 			}
 		});
 	}
