@@ -2,9 +2,13 @@ package ctci;
 
 import java.util.ArrayList;
 
+
 import javafx.scene.shape.Rectangle;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.ContextMenu;
@@ -28,7 +32,7 @@ import javafx.scene.paint.Color;
 public abstract class CollectionTemplate extends Pane {
 
 	protected Pane squareGroup = new Pane();
-	protected ArrayList<DataBoxTemplate> ps = new ArrayList<>();
+	protected ObservableList<DataBoxTemplate> ps = FXCollections.observableArrayList();
 	protected FXSorts sorts = new FXSorts(ps);
 	protected double xOffSet = ShapeBuilder.getLength();
 	protected double yOffSet = ShapeBuilder.getLength();
@@ -36,14 +40,38 @@ public abstract class CollectionTemplate extends Pane {
 	final Rectangle redBorder = new Rectangle(0, 0, Color.TRANSPARENT);
 	protected Menu sort = new Menu(Messages.getString("Collection.sort")); //$NON-NLS-1$
 	protected MenuItem edit = new MenuItem(Messages.getString("Collection.edit")); //$NON-NLS-1$
+	protected MenuItem bubbleSort = new MenuItem(Messages.getString("Collection.bubbleSort")); //$NON-NLS-1$
+	protected MenuItem quickSort = new MenuItem(Messages.getString("Collection.quickSort")); //$NON-NLS-1$
     protected BooleanProperty selected = null;
-
+   
 	public CollectionTemplate(BooleanProperty s) {
 		this.selected = s;
 
 	    Border border = new Border(new BorderStroke(Color.RED, 
 				BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
 		contextMenu.getItems().addAll(sort,edit);
+		sort.getItems().addAll(bubbleSort,quickSort);
+		bubbleSort.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+
+				sorts.bubbleSort();
+				
+				
+			}
+		});
+		
+		quickSort.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+
+				sorts.QuickSort(0,ps.size()-1);
+				
+				
+			}
+		});
+		
+		
 		squareGroup.addEventHandler(MouseEvent.MOUSE_CLICKED,new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(final MouseEvent event) {
@@ -91,11 +119,11 @@ public abstract class CollectionTemplate extends Pane {
 		this.squareGroup = squareGroup;
 	}
 
-	public ArrayList<DataBoxTemplate> getPs() {
+	public ObservableList<DataBoxTemplate> getPs() {
 		return ps;
 	}
 
-	public void setPs(ArrayList<DataBoxTemplate> ps) {
+	public void setPs( ObservableList<DataBoxTemplate> ps) {
 		this.ps = ps;
 	}
 
@@ -118,7 +146,13 @@ public abstract class CollectionTemplate extends Pane {
 	public void bubbleSort() throws InterruptedException {
 		sorts.bubbleSort();
 	}
-
+	public ArrayList<Integer> getIntegerList() {
+		ArrayList<Integer> tmp = new ArrayList<>();
+		for(DataBoxTemplate db : this.ps) {
+			tmp.add(db.value);
+		}
+		return tmp;
+	}
 	public abstract void buttons();
 
 }

@@ -88,6 +88,13 @@ public class LLDataNode extends DataBoxTemplate{
 		}
 
 
+		@Override
+		protected Text getT() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
 	    
 	}
 	

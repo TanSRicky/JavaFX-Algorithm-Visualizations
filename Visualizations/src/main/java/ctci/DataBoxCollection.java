@@ -69,12 +69,13 @@ public class DataBoxCollection extends CollectionTemplate{
 	@Override
 	public void populate() {
 		// TODO Auto-generated method stub
-			
+		for (int i = 0; i < 10000; i++) {	
 		   	    DataBox d = new DataBox(xOffSet,yOffSet);
 		   		squareGroup.getChildren().add(d.getStackPane());
 		   		ps.add(d);
 		   		OffSet();
 		}
+	}
 
 	@Override
 	public void buttons() {

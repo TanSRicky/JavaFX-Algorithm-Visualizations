@@ -69,6 +69,12 @@ public class TreeDataNode extends DataBoxTemplate {
 		return null;
 	}
 
+	@Override
+	protected Text getT() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

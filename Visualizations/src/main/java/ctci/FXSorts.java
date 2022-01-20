@@ -6,19 +6,20 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class FXSorts {
 
 	static double rate = .01;
-	ArrayList<DataBoxTemplate> ps = new ArrayList<DataBoxTemplate>();
+	ObservableList<DataBoxTemplate> ps = null;
 	final static IntegerProperty x = new SimpleIntegerProperty(0);
 	static int quickSortQ = 0;
 	Timeline timeline = new Timeline();
 	int swaps = 0;
 
-	public FXSorts(ArrayList<DataBoxTemplate> ps2) {
+	public FXSorts(ObservableList<DataBoxTemplate> ps2) {
 		ps = ps2;
 		timeline.setCycleCount(0);
 	}
@@ -35,6 +36,8 @@ public class FXSorts {
 		int nTmp = tmp.value;
 		tmp.value = tmp2.value;
 		tmp2.value = nTmp;
+		tmp.update();
+		tmp2.update();
 		swaps++;
 
 	}
