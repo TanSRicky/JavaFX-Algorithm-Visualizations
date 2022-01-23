@@ -14,15 +14,15 @@ import javafx.util.Pair;
 //which provides a time line to it.
 
 public class DataBoxCollection extends CollectionTemplate{
-    private int cols = 5;
+    private int cols = 10;
     public DataBoxCollection(BooleanProperty s){
     	super(s);
 
 		Dialog<Pair<String, String>> dialog = new Dialog<>();
 		dialog.setTitle("Pixel Grid creator");
 		dialog.setHeaderText("Enter nodes, rows, columns for your pixel grid");
-		ButtonType loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
-		dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+		ButtonType createButton = new ButtonType("Create", ButtonData.OK_DONE);
+		dialog.getDialogPane().getButtonTypes().addAll(createButton, ButtonType.CANCEL);
 		GridPane grid = new GridPane();
 		grid.setHgap(10);
 		grid.setVgap(10);
@@ -37,8 +37,7 @@ public class DataBoxCollection extends CollectionTemplate{
 		grid.add(rows, 1, 1);
 		dialog.getDialogPane().setContent(grid);
 		dialog.showAndWait();
-		System.out.println(rows.getText());
-		System.out.println(columns.getText());
+	
     }
     
    public void OffSet() {
@@ -69,7 +68,7 @@ public class DataBoxCollection extends CollectionTemplate{
 	@Override
 	public void populate() {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < 10000; i++) {	
+		for (int i = 0; i <  100; i++) {	
 		   	    DataBox d = new DataBox(xOffSet,yOffSet);
 		   		squareGroup.getChildren().add(d.getStackPane());
 		   		ps.add(d);

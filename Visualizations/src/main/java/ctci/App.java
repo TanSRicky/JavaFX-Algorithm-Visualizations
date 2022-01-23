@@ -3,6 +3,7 @@ package ctci;
 import javafx.application.Application;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,8 +21,11 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import java.util.Collections;
+import java.util.List;
+
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -33,7 +37,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import javafx.scene.input.KeyCode;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -114,7 +118,26 @@ public class App extends Application {
 		leftList.setMinHeight(600);
 		leftPane.setMinSize(25,500);
 		leftPane.setOpacity(1.0);
+		
+		leftList.setOnKeyPressed( new EventHandler<KeyEvent>()
+		{
+		  @Override
+		  public void handle( final KeyEvent keyEvent )
+		  {
+			  int index = leftList.getSelectionModel().getSelectedIndex();
+			  System.out.println(index);
+			  if ( keyEvent.getCode().equals( KeyCode.BACK_SPACE ))
+		      {
+
 	
+		     structures.remove(index);
+		     structureGroup.getChildren().remove(index);
+		     bottomList.getItems().remove(index);
+		     System.out.println(structures.toString());
+		     leftList.getItems().remove(index);
+		      }
+		    
+	} } );
 		scene = new Scene(borderPane,primaryScreenBounds.getMinX(),primaryScreenBounds.getMinY());
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
@@ -138,10 +161,11 @@ public class App extends Application {
 					structures.add(tmp);
 					leftList.getItems().addAll(tmp.toString());
 					structureGroup.getChildren().addAll(tmp.getSquareGroup());
+					
 					ListView<Text> valTmp = new ListView<>();
 					valTmp.setOrientation(Orientation.HORIZONTAL);
 					for(DataBoxTemplate db : tmp.getPs()) {
-						valTmp.getItems().add(db.getT());
+						valTmp.getItems().add(db.getSecondT());
 					}
 				   valTmp.setPrefHeight(50);
 					bottomList.getItems().add(valTmp);
@@ -157,13 +181,13 @@ public class App extends Application {
 				structures.add(tmp);
 				leftList.getItems().addAll(tmp.toString());
 				structureGroup.getChildren().addAll(tmp.getSquareGroup());
-
-				ArrayList<Integer> valTmp = new ArrayList<>();
+				ListView<Text> valTmp = new ListView<>();
+				valTmp.setOrientation(Orientation.HORIZONTAL);
 				for(DataBoxTemplate db : tmp.getPs()) {
-					valTmp.add(db.value);
+					valTmp.getItems().add(db.getT());
 				}
-			//	bottomList.getItems().add(valTmp.toString());
-				
+			   valTmp.setPrefHeight(50);
+				bottomList.getItems().add(valTmp);
 			}
 		});
 		
@@ -176,11 +200,13 @@ public class App extends Application {
 				structures.add(tmp);
 				leftList.getItems().addAll(tmp.toString());
 				structureGroup.getChildren().addAll(tmp.getSquareGroup());
-				ArrayList<Integer> valTmp = new ArrayList<>();
+				ListView<Text> valTmp = new ListView<>();
+				valTmp.setOrientation(Orientation.HORIZONTAL);
 				for(DataBoxTemplate db : tmp.getPs()) {
-					valTmp.add(db.value);
+					valTmp.getItems().add(db.getT());
 				}
-				//bottomList.getItems().addAll(valTmp.toString());
+			   valTmp.setPrefHeight(50);
+				bottomList.getItems().add(valTmp);
 			
 			}
 		});

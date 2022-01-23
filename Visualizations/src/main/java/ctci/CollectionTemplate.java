@@ -83,6 +83,7 @@ public abstract class CollectionTemplate extends Pane {
 							squareGroup.setBorder(border);
 						} else {
 							squareGroup.setBorder(Border.EMPTY);
+							
 						}
 			}
 		}}

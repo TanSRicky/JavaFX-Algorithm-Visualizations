@@ -19,10 +19,10 @@ public class LLDataNode extends DataBoxTemplate{
 		StackPane combinedPane = new StackPane();
 		Line line;
 		LLDataNode next;
-	    protected Text t = new Text();
+
 	    
 		public LLDataNode(double x, double y){
-			
+			super();
 			line = new Line();
 			value = r.nextInt(1000);
 			this.changeValue(value);
@@ -46,7 +46,7 @@ public class LLDataNode extends DataBoxTemplate{
 			combinedPane.setLayoutX(x);
 		    combinedPane.setLayoutY(y);
 		 
-
+	        update();
 			
 		}
 		  
@@ -58,11 +58,11 @@ public class LLDataNode extends DataBoxTemplate{
 			
 		}
 
-		@Override
-		public void update() {
-			// TODO Auto-generated method stub
-			
-		}
+
+	    public void update() {
+	     	this.t.setText(Integer.toString(this.value));
+	     	this.secondText.setText(Integer.toString(this.value));
+	    }
 
 		@Override
 		public void setColor(Color orange) {
@@ -87,12 +87,6 @@ public class LLDataNode extends DataBoxTemplate{
 			return null;
 		}
 
-
-		@Override
-		protected Text getT() {
-			// TODO Auto-generated method stub
-			return null;
-		}
 
 
 	    

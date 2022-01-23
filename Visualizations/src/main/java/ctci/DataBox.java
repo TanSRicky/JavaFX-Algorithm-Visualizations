@@ -10,15 +10,15 @@ public class  DataBox  extends DataBoxTemplate {
 
      private Polygon square;
      private StackPane s = new StackPane();
-     private Text t = new Text();
-     private Text secondText = new Text();
      static Random r = new Random(); 
      static int DataBoxCounter = 1;
 
     
      public DataBox (double x, double y){
-   
+ 		super();
+    
     	 value = r.nextInt(255);
+    	 
          square =  ShapeBuilder.square();
          this.changeValue(value);
          setColor(Color.rgb(0,0, value, ((double)value/255.0)));
@@ -26,6 +26,7 @@ public class  DataBox  extends DataBoxTemplate {
   	     s.setLayoutX(x);
          s.setLayoutY(y);
          DataBoxCounter++;
+       
       }
 
 
@@ -41,15 +42,6 @@ public class  DataBox  extends DataBoxTemplate {
     @Override
     public Color getColor() {
     	return (Color) this.square.getFill();
-    }
-    public boolean changeValue(int x) {
-    	this.value = x;
-    	this.secondText.setText(Integer.toString(x));
-    	this.t.setText(Integer.toString(x));
-    	return true;
-    }
-    public Text getT() {
-    	return secondText;
     }
 
 

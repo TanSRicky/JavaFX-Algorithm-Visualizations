@@ -1,6 +1,6 @@
 package ctci;
 
-import java.util.ArrayList;
+
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -12,7 +12,7 @@ import javafx.util.Duration;
 
 public class FXSorts {
 
-	static double rate = .01;
+	static double rate = .1;
 	ObservableList<DataBoxTemplate> ps = null;
 	final static IntegerProperty x = new SimpleIntegerProperty(0);
 	static int quickSortQ = 0;
@@ -83,7 +83,7 @@ public class FXSorts {
 
 		}));
 		timeline.play();
-		System.out.println(swaps);
+
 	}
 
 	public int partitiontest(int l, int r) {

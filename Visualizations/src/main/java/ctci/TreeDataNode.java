@@ -21,14 +21,14 @@ public class TreeDataNode extends DataBoxTemplate {
 	static double scaleFactor = 10;
 	
 	public TreeDataNode(double x, double y) {
-		
+		super();
         combinedPane.getChildren().addAll(circleOne, t);
     	combinedPane.setLayoutX(x);
     	combinedPane.setLayoutY(y);
 		value = r.nextInt(1000);
 		this.changeValue(value);
 		radius = circleOne.getRadius();      
-		
+        update();
 	}
 
 	@Override
@@ -38,11 +38,6 @@ public class TreeDataNode extends DataBoxTemplate {
 
 	}
 
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void setColor(Color orange) {
@@ -69,11 +64,7 @@ public class TreeDataNode extends DataBoxTemplate {
 		return null;
 	}
 
-	@Override
-	protected Text getT() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 
